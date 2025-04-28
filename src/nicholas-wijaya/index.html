@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Profesional</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Nicholas Wijaya</h1>
+      <p>Web Developer | Data Analyst | Freelancer</p>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#skills">Keahlian</a></li>
+      <li><a href="#experience">Pengalaman</a></li>
+      <li><a href="#education">Pendidikan</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <section id="about" class="container">
+    <div class="card">
+      <h2>Tentang Saya</h2>
+      <p>Saya adalah seorang profesional di bidang teknologi informasi dengan keahlian dalam pengembangan web dan analisis data. Berpengalaman lebih dari 5 tahun dalam proyek freelance dan perusahaan startup.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="container">
+    <div class="card">
+      <h2>Keahlian</h2>
+      <ul class="skills">
+        <li>HTML, CSS, JavaScript</li>
+        <li>Python, SQL</li>
+        <li>React, Node.js</li>
+        <li>Data Visualization (Power BI, Tableau)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experience" class="container">
+    <div class="card">
+      <h2>Pengalaman Kerja</h2>
+      <div class="job">
+        <h3>Web Developer - PT Teknologi Maju</h3>
+        <p><em>2021 - Sekarang</em></p>
+        <p>Mengembangkan aplikasi web berbasis React dan Node.js untuk klien B2B.</p>
+      </div>
+      <div class="job">
+        <h3>Data Analyst - Freelancer</h3>
+        <p><em>2018 - 2021</em></p>
+        <p>Membantu bisnis kecil menengah menganalisis data penjualan dan membuat dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="container">
+    <div class="card">
+      <h2>Pendidikan</h2>
+      <p>Sarjana Teknik Informatika - Universitas Indonesia (2014 - 2018)</p>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <div class="card">
+      <h2>Kontak</h2>
+      <p>Email: nichlswjy24@email.com</p>
+      <p>Instagram: <a href="https://instagram.com/nichlswjy_">nichlswjy_</a></p>
+      <p>GitHub: <a href="https://github.com/dikodein">dikodein</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nicholas Wijaya. All rights reserved.</p>
+  </footer>
+
+  <script>
+    console.log("Portfolio website loaded.");
+    // scroll-top.js
+
+// Membuat tombol scroll to top
+const scrollButton = document.createElement('button');
+scrollButton.innerText = '↑';
+scrollButton.id = 'scrollTopBtn';
+document.body.appendChild(scrollButton);
+
+// Styling dasar tombol via JS (atau bisa juga via CSS lebih rapi)
+scrollButton.style.position = 'fixed';
+scrollButton.style.bottom = '40px';
+scrollButton.style.right = '40px';
+scrollButton.style.padding = '10px 15px';
+scrollButton.style.fontSize = '20px';
+scrollButton.style.display = 'none'; // awalnya disembunyikan
+scrollButton.style.border = 'none';
+scrollButton.style.borderRadius = '5px';
+scrollButton.style.backgroundColor = '#007BFF';
+scrollButton.style.color = 'white';
+scrollButton.style.cursor = 'pointer';
+scrollButton.style.zIndex = '1000';
+
+// Event untuk menunjukkan tombol ketika scroll ke bawah
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 500) { // ubah 500 kalau mau lebih cepat muncul
+    scrollButton.style.display = 'block';
+  } else {
+    scrollButton.style.display = 'none';
+  }
+});
+
+// Event untuk klik tombol, scroll ke atas
+scrollButton.addEventListener('click', function() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+  </script>
+</body>
+</html>
