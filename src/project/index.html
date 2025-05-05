@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Wolf.Def">
+    <meta name="description" content="dikodein aja dulu">
+  <title>Perpustakaan Proyek Saya</title>
+  <link rel="icon" href="../../img/serigala.jpg" type="image/jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📚 Perpustakaan Proyek Saya</h1>
+    <p>Kumpulan karya dan eksperimen saya</p>
+  </header>
+
+  <main id="project-list">
+    <!-- Daftar proyek akan dimuat lewat JavaScript -->
+  </main>
+
+  <script>
+const projects = [
+  {
+    title: "FnB Coffee",
+    image: "fnb-coffee/assets/back.jpg",
+    description: "Web profil perusahaan kopi.",
+    link: "fnb-coffee/index.html"
+  }
+];
+
+const container = document.getElementById('project-list');
+
+projects.forEach(proj => {
+  const card = document.createElement('a');
+  card.href = proj.link;
+  card.target = "_blank";
+  card.className = 'project-card';
+  card.innerHTML = `
+    <img src="${proj.image}" alt="${proj.title}">
+    <div class="project-content">
+      <h3 class="project-title">${proj.title}</h3>
+      <p class="project-description">${proj.description}</p>
+    </div>
+  `;
+  container.appendChild(card);
+});
+  </script>
+    <!-- Footer -->
+    <div class="footer">
+        <p>Created by <strong>Wolf.Def</strong> | <a href="https://github.com/dikodein" target="_blank">GitHub</a></p>
+    </div>
+</body>
+</html>
