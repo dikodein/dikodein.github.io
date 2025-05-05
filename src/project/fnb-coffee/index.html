@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FnB Coffee</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">FnB Coffee</div>
+    <div class="burger" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><a href="#">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Selamat Datang di FnB Coffee</h1>
+      <p>Tempat terbaik untuk menikmati kopi dan suasana hangat.</p>
+      <a href="#menu" class="btn">Lihat Menu</a>
+    </div>
+  </section>
+
+  <section id="menu" class="menu">
+    <h2>Menu Andalan</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="assets/coffee.jpg" alt="Kopi" />
+        <h3>Espresso</h3>
+        <p>Shot kopi pekat untuk penggemar rasa kuat.</p>
+      </div>
+      <div class="menu-item">
+        <img src="assets/latte.jpg" alt="Latte" />
+        <h3>Latte</h3>
+        <p>Kopi susu lembut dengan sentuhan seni latte.</p>
+      </div>
+      <div class="menu-item">
+        <img src="assets/cappuccino.jpg" alt="Cappuccino" />
+        <h3>Cappuccino</h3>
+        <p>Perpaduan espresso, susu, dan buih creamy.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 <b>FnB Coffee</b>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("nav");
+      nav.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
