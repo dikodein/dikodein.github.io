@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Play Music</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 Play Music</h1>
+    <ul class="playlist" id="playlist">
+      <li data-file="songs/stecu.mp3">Stecu | Faris Adam (Musik Timur)</li>
+      <li data-file="songs/mia-a7x.mp3">M.I.A. | Avenged Sevenfold (English)</li>
+    </ul>
+
+    <div class="player">
+      <p id="now-playing">Pilih lagu untuk diputar</p>
+      <audio id="audio" controls></audio>
+      <div class="controls">
+        <button id="prev">⏮️</button>
+        <button id="play">▶️</button>
+        <button id="next">⏭️</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('play');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const playlist = document.getElementById('playlist');
+const nowPlaying = document.getElementById('now-playing');
+
+let currentTrack = 0;
+let tracks = [];
+
+playlist.querySelectorAll('li').forEach((li, index) => {
+  tracks.push({
+    name: li.textContent,
+    file: li.getAttribute('data-file')
+  });
+
+  li.addEventListener('click', () => {
+    currentTrack = index;
+    playTrack();
+  });
+});
+
+function playTrack() {
+  const track = tracks[currentTrack];
+  audio.src = track.file;
+  nowPlaying.textContent = `Sedang memutar: ${track.name}`;
+  audio.play();
+}
+
+playBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+  playTrack();
+});
+
+nextBtn.addEventListener('click', () => {
+  currentTrack = (currentTrack + 1) % tracks.length;
+  playTrack();
+});
+  </script>
+</body>
+</html>
