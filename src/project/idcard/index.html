@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ID Card Nicholas Wijaya</title>
+  <link href="https://dikodein.github.io/img/serigala.jpg" rel="icon">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f1f3f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .id-card {
+      width: 330px;
+      height: 500px;
+      background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px 20px;
+      margin: 60px auto;
+      position: relative;
+      border: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    .company-logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .profile {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid black;
+      object-fit: cover;
+      box-shadow:1px 1px 10px 1px black;
+      margin: 0 auto 12px;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 4px;
+    }
+
+    .position {
+      font-size: 15px;
+      font-weight: 500;
+      color: #6c757d;
+    }
+
+    .id-number {
+      font-size: 14px;
+      color: #495057;
+      margin-top: 10px;
+    }
+
+    .divider {
+      width: 60%;
+      height: 1px;
+      background-color: #ced4da;
+      margin: 10px auto;
+    }
+
+    .qr-code {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto 10px;
+      border: 1px solid #dee2e6;
+      padding: 5px;
+      border-radius: 6px;
+      background-color: #ffffff;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #6c757d;
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      left: 0;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="id-card">
+    <!-- Logo di paling atas -->
+    <img src="https://eswpcd25uod.exactdn.com/blog/wp-content/uploads/2017/05/01-1024x1024.jpg" alt="Logo Perusahaan" class="company-logo" style="border:2px solid whitesmoke; border-radius:90%; box-shadow:1px 1px 10px 1px whitesmoke;width:70px;"><br>
+
+    <!-- Foto profil di bawah logo -->
+    <img src="https://marketplace.canva.com/gJly0/MAGDkMgJly0/1/tl/canva-user-profile-icon-vector.-avatar-or-person-icon.-profile-picture%2C-portrait-symbol.-MAGDkMgJly0.png" alt="Foto Pegawai" class="profile">
+
+    <h5>Nicholas Wijaya</h5>
+    <div class="position">Staff</div>
+
+    <div class="divider"></div>
+
+    <div class="id-number">ID: <b>1234567890</b></div>
+
+    <img 
+      src="https://api.qrserver.com/v1/create-qr-code/?data='https://github.com/dikodein'&size=150x150" 
+      alt="QR Code" 
+      class="qr-code"
+    >
+
+    <div class="footer">
+      Perusahaan <b>dikodein</b><br>
+      <a href="https://dikodein.github.io" target="_blank">www.dikodein.github.io</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
