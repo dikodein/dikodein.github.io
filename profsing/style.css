@@ -1,0 +1,114 @@
+/* Reset and font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(ellipse at bottom, #0d0d2b 0%, #000000 100%);
+  color: #ffffff;
+  line-height: 1.8;
+  overflow-x: hidden;
+  position: relative;
+  padding: 40px 20px;
+  z-index: 1;
+}
+
+/* Galaxy background animation */
+.galaxy {
+  background: url('https://images.unsplash.com/photo-1475856034136-0f3f271d37d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2100&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  opacity: 0.3;
+  animation: moveBackground 60s linear infinite;
+}
+
+@keyframes moveBackground {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  color: #9cd9ff;
+  text-shadow: 0 0 10px #0ff;
+}
+
+header p {
+  font-size: 1.3rem;
+  color: #a0b8ff;
+}
+
+/* Sections */
+section {
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  background: rgba(0, 0, 30, 0.6);
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(100, 150, 255, 0.3);
+}
+
+section h2 {
+  font-size: 1.8rem;
+  color: #85e8ff;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+}
+
+ul li::before {
+  content: "★";
+  color: #ffdd57;
+  position: absolute;
+  left: 0;
+}
+
+/* Projects */
+.project {
+  margin-bottom: 25px;
+}
+
+.project h3 {
+  color: #ffd3ec;
+}
+
+/* Contact links */
+a {
+  color: #7ad8ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 80px;
+}
