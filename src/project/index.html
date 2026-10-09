@@ -3,64 +3,312 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Wolf.Def">
-    <meta name="description" content="dikodein aja dulu">
-  <title>Perpustakaan Proyek Saya</title>
-  <link rel="icon" href="../../img/serigala.jpg" type="image/jpg">
-  <link rel="stylesheet" href="style.css">
+  <meta name="author" content="Wolf.Def">
+  <meta name="description" content="Perpustakaan proyek Wolf.Def — kumpulan karya, website, dan eksperimen digital dari dikodein.">
+  <meta name="theme-color" content="#080b16">
+  <title>Project Library — Wolf.Def</title>
+  <link rel="icon" href="../../img/serigala.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b16;
+      --panel: rgba(18, 24, 43, .78);
+      --panel-solid: #11172a;
+      --text: #f2f5ff;
+      --muted: #9aa5c2;
+      --line: rgba(151, 169, 220, .17);
+      --cyan: #5cf2e3;
+      --purple: #a78bfa;
+      --pink: #ff70c8;
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(91, 72, 190, .22), transparent 35%),
+        radial-gradient(ellipse at 90% 15%, rgba(28, 194, 190, .12), transparent 32%),
+        var(--bg);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .16;
+      background-image: linear-gradient(rgba(153, 169, 220, .12) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(153, 169, 220, .12) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 18px; padding: 24px 0;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 700; letter-spacing: -.04em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 40px; height: 40px;
+      border-radius: 13px; color: #071014; font-size: 20px;
+      background: linear-gradient(135deg, var(--cyan), #9cf7c5);
+      box-shadow: 0 0 28px rgba(92, 242, 227, .2);
+    }
+    .brand span:last-child { font-size: 17px; }
+    .brand small { color: var(--muted); font-weight: 400; letter-spacing: 0; }
+    .top-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px;
+      color: #d8def3; font-size: 13px; text-decoration: none; transition: .2s ease;
+    }
+    .top-link:hover { border-color: rgba(92, 242, 227, .55); color: var(--cyan); transform: translateY(-1px); }
+    .hero { padding: clamp(48px, 9vw, 100px) 0 48px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; margin-bottom: 20px;
+      color: var(--cyan); font: 12px "DM Mono", monospace; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+    h1 { margin: 0; font-size: clamp(38px, 7vw, 76px); line-height: .98; letter-spacing: -.065em; }
+    h1 .accent { color: transparent; background: linear-gradient(100deg, var(--cyan), #b6a0ff 60%, var(--pink)); -webkit-background-clip: text; background-clip: text; }
+    .hero p { max-width: 590px; margin: 23px auto 0; color: var(--muted); font-size: clamp(15px, 2vw, 18px); line-height: 1.8; }
+    .hero-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 27px; }
+    .meta-pill { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; color: #c2cbe3; font: 11px "DM Mono", monospace; }
+    .meta-pill b { color: var(--cyan); font-weight: 500; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 28px 0 22px; }
+    .section-kicker { margin: 0 0 7px; color: var(--cyan); font: 11px "DM Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(24px, 4vw, 34px); letter-spacing: -.045em; }
+    .search-wrap { position: relative; width: min(100%, 290px); }
+    .search-wrap span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    #project-search {
+      width: 100%; padding: 12px 14px 12px 39px; color: var(--text);
+      border: 1px solid var(--line); border-radius: 13px; outline: none;
+      background: rgba(16, 22, 40, .86); font: inherit; font-size: 13px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    #project-search:focus { border-color: rgba(92, 242, 227, .6); box-shadow: 0 0 0 3px rgba(92, 242, 227, .08); }
+    .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-bottom: 76px; }
+    .project-card {
+      display: flex; flex-direction: column; min-width: 0; overflow: hidden;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(155deg, rgba(24, 32, 56, .92), rgba(13, 17, 32, .96));
+      text-decoration: none; box-shadow: 0 14px 35px rgba(0, 0, 0, .12);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(92, 242, 227, .42); box-shadow: 0 20px 44px rgba(0, 0, 0, .25), 0 0 25px rgba(92, 242, 227, .06); }
+    .project-image { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: #161d35; }
+    .project-image::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(8, 11, 22, .38)); pointer-events: none; }
+    .project-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s ease; }
+    .project-card:hover .project-image img { transform: scale(1.055); }
+    .project-number {
+      position: absolute; top: 13px; left: 13px; z-index: 1;
+      padding: 6px 9px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px;
+      color: white; background: rgba(8, 11, 22, .68); backdrop-filter: blur(10px);
+      font: 10px "DM Mono", monospace;
+    }
+    .project-content { display: flex; flex: 1; flex-direction: column; padding: 19px 19px 17px; }
+    .project-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .project-title { margin: 0; font-size: 19px; letter-spacing: -.035em; }
+    .project-arrow { display: grid; place-items: center; flex: 0 0 31px; width: 31px; height: 31px; border: 1px solid var(--line); border-radius: 50%; color: var(--cyan); transition: .2s; }
+    .project-card:hover .project-arrow { color: #071014; background: var(--cyan); border-color: var(--cyan); transform: rotate(45deg); }
+    .project-description { min-height: 44px; margin: 10px 0 18px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .project-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line); }
+    .project-tag { color: #c0c9e2; font: 10px "DM Mono", monospace; letter-spacing: .04em; text-transform: uppercase; }
+    .open-label { color: var(--cyan); font-size: 12px; font-weight: 600; }
+    .empty-state { grid-column: 1 / -1; padding: 48px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+    .footer { border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 24px 0 30px; color: var(--muted); font-size: 12px; }
+    .footer strong { color: var(--text); }
+    .footer a { color: var(--cyan); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-note { font: 10px "DM Mono", monospace; letter-spacing: .04em; }
+    @media (max-width: 850px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      .topbar { padding: 17px 0; }
+      .top-link { padding: 9px 11px; font-size: 11px; }
+      .hero { padding-top: 57px; }
+      .section-head { align-items: stretch; flex-direction: column; }
+      .search-wrap { width: 100%; }
+      .project-grid { grid-template-columns: 1fr; gap: 14px; padding-bottom: 54px; }
+      .project-content { padding: 17px; }
+      .project-description { min-height: 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>📚 Perpustakaan Proyek Saya</h1>
-    <p>Kumpulan karya dan eksperimen saya</p>
-  </header>
+  <div class="shell">
+    <nav class="topbar" aria-label="Navigasi utama">
+      <a class="brand" href="#" aria-label="Wolf.Def Project Library">
+        <span class="brand-mark">⌘</span>
+        <span>Wolf.Def <small>/ project library</small></span>
+      </a>
+      <a class="top-link" href="https://github.com/dikodein" target="_blank" rel="noopener noreferrer">
+        <span>↗</span> GitHub
+      </a>
+    </nav>
 
-  <main id="project-list">
-    <!-- Daftar proyek akan dimuat lewat JavaScript -->
-  </main>
+    <header class="hero">
+      <div class="eyebrow">Digital playground</div>
+      <h1>Ideas become<br><span class="accent">projects.</span></h1>
+      <p>Selamat datang di perpustakaan proyek saya. Tempat berbagai karya, eksperimen, dan ide digital dikumpulkan dan terus dikembangkan.</p>
+      <div class="hero-meta">
+        <span class="meta-pill"><b>●</b> PROJECT ARCHIVE</span>
+        <span class="meta-pill">MADE WITH CURIOSITY</span>
+        <span class="meta-pill" id="project-count">03 PROJECTS</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Selected collection / 01</p>
+          <h2>Jelajahi proyek</h2>
+        </div>
+        <label class="search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" id="project-search" placeholder="Cari proyek..." aria-label="Cari proyek">
+        </label>
+      </div>
+      <section class="project-grid" id="project-list" aria-label="Daftar proyek">
+        <noscript>Aktifkan JavaScript untuk melihat daftar proyek.</noscript>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> <strong>Wolf.Def</strong> · Crafted with curiosity.</p>
+        <div class="footer-note">BUILD · EXPERIMENT · REPEAT</div>
+        <p><a href="https://github.com/dikodein" target="_blank" rel="noopener noreferrer">github.com/dikodein ↗</a></p>
+      </div>
+    </footer>
+  </div>
 
   <script>
-const projects = [
-  {
-    title: "FnB Coffee",
-    image: "fnb-coffee/assets/back.jpg",
-    description: "Web profil perusahaan kopi.",
-    link: "fnb-coffee/index.html"
-  },
-  {
-    title: "ID Card",
-    image: "https://i.poweredtemplates.com/p/sp/89544/sp_slide_h_1.jpg",
-    description: "Web ID Card Auto QR.",
-    link: "idcard/index.html"
-  },
-  {
-    title: "Play Music",
-    image: "play-music/img/images.png",
-    description: "Web untuk memutar musik.",
-    link: "play-music/index.html"
-  }
-];
+    const projects = [
+      {
+        title: "FnB Coffee",
+        image: "fnb-coffee/assets/back.jpg",
+        description: "Website profil perusahaan kopi dengan tampilan yang berfokus pada identitas brand.",
+        tag: "Company Profile",
+        link: "fnb-coffee/index.html"
+      },
+      {
+        title: "ID Card",
+        image: "https://i.poweredtemplates.com/p/sp/89544/sp_slide_h_1.jpg",
+        description: "Eksperimen web untuk membuat ID Card otomatis dengan dukungan QR Code.",
+        tag: "Web Utility",
+        link: "idcard/index.html"
+      },
+      {
+        title: "Play Music",
+        image: "play-music/img/images.png",
+        description: "Web pemutar musik sederhana untuk menikmati koleksi audio.",
+        tag: "Music Web",
+        link: "play-music/index.html"
+      }
+    ];
 
-const container = document.getElementById('project-list');
+    const container = document.getElementById("project-list");
+    const searchInput = document.getElementById("project-search");
+    const countLabel = document.getElementById("project-count");
 
-projects.forEach(proj => {
-  const card = document.createElement('a');
-  card.href = proj.link;
-  card.target = "_blank";
-  card.className = 'project-card';
-  card.innerHTML = `
-    <img src="${proj.image}" alt="${proj.title}">
-    <div class="project-content">
-      <h3 class="project-title">${proj.title}</h3>
-      <p class="project-description">${proj.description}</p>
-    </div>
-  `;
-  container.appendChild(card);
-});
+    function renderProjects(query = "") {
+      const normalizedQuery = query.trim().toLowerCase();
+      const filtered = projects.filter(project =>
+        `${project.title} ${project.description} ${project.tag}`.toLowerCase().includes(normalizedQuery)
+      );
+
+      container.replaceChildren();
+      countLabel.textContent = `${String(filtered.length).padStart(2, "0")} PROJECT${filtered.length === 1 ? "" : "S"}`;
+
+      if (filtered.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "Proyek tidak ditemukan. Coba kata kunci lain.";
+        container.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach((project, index) => {
+        const card = document.createElement("a");
+        card.className = "project-card";
+        card.href = project.link;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+        card.setAttribute("aria-label", `Buka proyek ${project.title}`);
+
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "project-image";
+
+        const image = document.createElement("img");
+        image.src = project.image;
+        image.alt = `Pratinjau proyek ${project.title}`;
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.onerror = () => {
+          imageWrap.style.background = "linear-gradient(135deg, #192541, #34234d)";
+          image.style.display = "none";
+        };
+
+        const number = document.createElement("span");
+        number.className = "project-number";
+        number.textContent = `PROJECT / ${String(projects.indexOf(project) + 1).padStart(2, "0")}`;
+
+        imageWrap.append(image, number);
+
+        const content = document.createElement("div");
+        content.className = "project-content";
+
+        const top = document.createElement("div");
+        top.className = "project-top";
+
+        const title = document.createElement("h3");
+        title.className = "project-title";
+        title.textContent = project.title;
+
+        const arrow = document.createElement("span");
+        arrow.className = "project-arrow";
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "↗";
+
+        top.append(title, arrow);
+
+        const description = document.createElement("p");
+        description.className = "project-description";
+        description.textContent = project.description;
+
+        const bottom = document.createElement("div");
+        bottom.className = "project-bottom";
+
+        const tag = document.createElement("span");
+        tag.className = "project-tag";
+        tag.textContent = project.tag;
+
+        const openLabel = document.createElement("span");
+        openLabel.className = "open-label";
+        openLabel.textContent = "Buka proyek →";
+
+        bottom.append(tag, openLabel);
+        content.append(top, description, bottom);
+        card.append(imageWrap, content);
+        container.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener("input", event => renderProjects(event.target.value));
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderProjects();
   </script>
-    <!-- Footer -->
-    <div class="footer">
-        <p>Created by <strong>Wolf.Def</strong> | <a href="https://github.com/dikodein" target="_blank">GitHub</a></p>
-    </div>
 </body>
 </html>
