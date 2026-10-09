@@ -1,316 +1,446 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nicholas Wijaya">
+    <meta name="description" content="Portfolio Nicholas Wijaya — web designer, developer, dan kreator digital dari Indramayu.">
+    <meta name="theme-color" content="#080816">
+    <title>Nicholas Wijaya — Developer Portfolio</title>
 
-        <link rel="stylesheet" href="assets/css/styles.css">
-         <link rel="icon" href="assets/img/perfil.png" type="image/jpg">
+    <link rel="icon" href="assets/img/perfil.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        :root {
+            --bg: #080816;
+            --bg-soft: #101027;
+            --panel: #11112b;
+            --cyan: #00f5ff;
+            --purple: #a855f7;
+            --pink: #ff4ecd;
+            --green: #39ff88;
+            --white: #f4f4ff;
+            --muted: #a2a2c4;
+            --border: rgba(0,245,255,.2);
+            --pixel: "Press Start 2P", monospace;
+            --font: "Space Grotesk", sans-serif;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body {
+            margin: 0; color: var(--white); font-family: var(--font);
+            background:
+                radial-gradient(ellipse at 12% 8%, rgba(93,40,170,.18), transparent 34%),
+                radial-gradient(ellipse at 88% 35%, rgba(0,245,255,.07), transparent 32%),
+                var(--bg);
+            overflow-x: hidden;
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: linear-gradient(rgba(0,245,255,.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,245,255,.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+        .section { padding: 100px 0; }
+        .section-head { text-align: center; margin-bottom: 48px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 9px; margin-bottom: 18px;
+            color: var(--cyan); font-size: .76rem; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { content: ""; width: 23px; height: 3px; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+        .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -1.5px; margin: 0 0 15px; }
+        .section-desc { max-width: 650px; margin: auto; color: var(--muted); line-height: 1.85; }
+        .gradient {
+            color: var(--cyan); background: linear-gradient(90deg,var(--cyan),#a78bfa,var(--pink));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .pixel-label { font: .58rem/1.8 var(--pixel); color: var(--purple); letter-spacing: 1px; }
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center; gap: 9px;
+            padding: 13px 19px; border: 1px solid var(--cyan); border-radius: 0;
+            background: var(--cyan); color: var(--bg); font-weight: 700; transition: .22s;
+            box-shadow: 5px 5px 0 rgba(0,245,255,.13); cursor: pointer;
+        }
+        .btn:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(0,245,255,.18); color: var(--bg); background: #8cffff; }
+        .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.24); box-shadow: none; }
+        .btn-ghost:hover { color: var(--cyan); background: rgba(0,245,255,.05); border-color: var(--cyan); box-shadow: none; }
 
-        <title>Portfolio Nicholas Wijaya</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Nicholas Wijaya</a>
+        /* Header / navigation */
+        .header {
+            position: sticky; top: 0; z-index: 1000; background: rgba(8,8,22,.88);
+            backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+        }
+        .nav { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+        .logo { font-size: 1.12rem; font-weight: 700; letter-spacing: -.4px; }
+        .logo span { color: var(--cyan); }
+        .logo small { display: block; color: var(--muted); font-size: .57rem; letter-spacing: 2px; font-weight: 500; margin-top: 3px; }
+        .nav-menu { display: flex; align-items: center; gap: 7px; }
+        .nav-link { color: #c5c5df; font-size: .92rem; font-weight: 600; padding: 10px 12px; transition: color .2s; }
+        .nav-link:hover, .nav-link.active { color: var(--cyan); }
+        .nav-toggle { display: none; border: 1px solid var(--border); background: transparent; color: var(--cyan); font-size: 1.8rem; padding: 4px 9px; cursor: pointer; }
+
+        /* Hero */
+        .hero { min-height: 650px; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 45px; padding-top: 75px; padding-bottom: 75px; }
+        .status { display: inline-flex; align-items: center; gap: 10px; padding: 9px 12px; border: 1px solid rgba(57,255,136,.28); background: rgba(57,255,136,.05); color: var(--green); font-size: .72rem; letter-spacing: 1px; margin-bottom: 26px; }
+        .status-dot { width: 8px; height: 8px; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 1.5s infinite; }
+        .hero h1 { font-size: clamp(2.5rem, 5.5vw, 4.8rem); line-height: 1.1; letter-spacing: -3px; margin: 0 0 24px; }
+        .hero h1 .role { font-size: .48em; letter-spacing: -.5px; color: var(--muted); font-weight: 500; }
+        .hero-copy { color: var(--muted); max-width: 590px; line-height: 1.9; font-size: 1.05rem; margin-bottom: 28px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+        .socials { display: flex; gap: 12px; margin-top: 30px; }
+        .socials a { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.14); color: #c5c5df; font-size: 1.3rem; transition: .2s; }
+        .socials a:hover { color: var(--cyan); border-color: var(--cyan); transform: translateY(-3px); }
+        .profile-frame { position: relative; width: min(390px, 100%); margin: auto; padding: 18px; border: 1px solid rgba(0,245,255,.3); background: rgba(17,17,43,.76); box-shadow: 10px 10px 0 rgba(0,245,255,.05); }
+        .profile-frame::before, .profile-frame::after { content: ""; position: absolute; width: 45px; height: 45px; border-color: var(--pink); border-style: solid; }
+        .profile-frame::before { top: -7px; left: -7px; border-width: 2px 0 0 2px; }
+        .profile-frame::after { right: -7px; bottom: -7px; border-width: 0 2px 2px 0; }
+        .profile-image { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; object-position: center; background: var(--bg-soft); filter: saturate(.9); }
+        .profile-caption { display: flex; justify-content: space-between; gap: 12px; padding-top: 15px; font-size: .75rem; color: var(--muted); }
+        .profile-caption span:last-child { color: var(--green); }
+
+        /* Panels */
+        .panel { height: 100%; padding: 28px; background: linear-gradient(145deg,rgba(20,20,49,.94),rgba(13,13,31,.94)); border: 1px solid rgba(255,255,255,.09); position: relative; transition: .25s; }
+        .panel::before { content: ""; position: absolute; top: -1px; left: -1px; width: 30px; height: 3px; background: var(--cyan); }
+        .panel:hover { transform: translateY(-5px); border-color: rgba(0,245,255,.32); box-shadow: 0 15px 40px rgba(0,0,0,.18); }
+        .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 48px; align-items: center; }
+        .about-photo { border: 1px solid rgba(168,85,247,.35); padding: 12px; background: var(--panel); }
+        .about-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+        .about-copy { color: var(--muted); line-height: 1.95; }
+        .about-copy strong { color: var(--white); }
+        .feature-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; margin-top: 25px; }
+        .feature { padding: 14px; background: rgba(0,245,255,.035); border: 1px solid rgba(0,245,255,.12); font-size: .86rem; }
+        .feature i { color: var(--cyan); font-size: 1.2rem; vertical-align: middle; margin-right: 6px; }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+        .skill { padding: 19px; border: 1px solid rgba(255,255,255,.09); background: rgba(17,17,43,.72); }
+        .skill-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .skill-name { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .skill-name i { font-size: 1.45rem; color: var(--cyan); }
+        .skill-value { color: var(--muted); font-size: .8rem; }
+        .skill-track { height: 6px; background: #252541; overflow: hidden; }
+        .skill-fill { height: 100%; width: var(--level); background: linear-gradient(90deg,var(--purple),var(--cyan)); transform-origin: left; animation: fillbar 1.2s ease-out both; }
+
+        /* Work */
+        .work-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+        .work-card { display: block; overflow: hidden; border: 1px solid rgba(255,255,255,.1); background: var(--panel); transition: .25s; }
+        .work-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
+        .work-card img { width: 100%; aspect-ratio: 1.35/1; object-fit: cover; transition: transform .4s; }
+        .work-card:hover img { transform: scale(1.04); }
+        .work-caption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 15px; font-weight: 600; font-size: .9rem; }
+        .work-caption i { color: var(--cyan); font-size: 1.15rem; }
+
+        /* Contact */
+        .contact-box { max-width: 800px; margin: auto; padding: 38px; background: var(--panel); border: 1px solid rgba(0,245,255,.25); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .field { width: 100%; padding: 14px 15px; color: var(--white); background: #09091b; border: 1px solid rgba(255,255,255,.13); border-radius: 0; outline: none; font: inherit; }
+        .field:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,245,255,.07); }
+        .field::placeholder { color: #777796; }
+        textarea.field { min-height: 145px; resize: vertical; }
+        .contact-form { display: grid; gap: 16px; }
+        .form-note { color: var(--muted); font-size: .82rem; line-height: 1.7; margin: 0; }
+
+        /* Footer / back to top */
+        .footer { border-top: 1px solid var(--border); background: rgba(5,5,16,.7); padding: 30px 0; text-align: center; }
+        .footer-name { font-weight: 700; font-size: 1.1rem; }
+        .footer-name span { color: var(--cyan); }
+        .footer-social { display: flex; justify-content: center; gap: 15px; margin: 15px 0; }
+        .footer-social a { color: var(--muted); font-size: 1.35rem; }
+        .footer-social a:hover { color: var(--cyan); }
+        .footer-copy { color: #8585a8; font-size: .82rem; margin: 0; }
+        .back-top { position: fixed; right: 20px; bottom: 20px; z-index: 900; width: 44px; height: 44px; display: grid; place-items: center; background: var(--panel); color: var(--cyan); border: 1px solid var(--border); font-size: 1.5rem; opacity: 0; visibility: hidden; transition: .2s; }
+        .back-top.show { opacity: 1; visibility: visible; }
+        @keyframes pulse { 50% { opacity: .35; } }
+        @keyframes fillbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+        @media (max-width: 850px) {
+            .nav-toggle { display: block; }
+            .nav-menu { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 15px 20px 22px; flex-direction: column; align-items: stretch; gap: 4px; background: rgba(8,8,22,.98); border-bottom: 1px solid var(--border); }
+            .nav-menu.show { display: flex; }
+            .nav-link { display: block; padding: 12px !important; }
+            .hero { grid-template-columns: 1fr; min-height: 0; gap: 48px; padding-top: 65px; }
+            .hero-content { text-align: center; }
+            .hero-copy { margin-inline: auto; }
+            .hero-actions, .socials { justify-content: center; }
+            .profile-frame { max-width: 340px; }
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .about-photo { max-width: 360px; margin: auto; }
+            .about-photo img { aspect-ratio: 5/4; }
+            .work-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .section { padding: 78px 0; }
+        }
+        @media (max-width: 560px) {
+            .container { width: min(100% - 30px,1120px); }
+            .hero h1 { font-size: clamp(2.3rem,11vw,3.5rem); letter-spacing: -2px; }
+            .hero-actions { flex-direction: column; }
+            .hero-actions .btn { width: 100%; }
+            .skills-grid, .work-grid, .contact-grid, .feature-list { grid-template-columns: 1fr; }
+            .panel, .contact-box { padding: 22px; }
+            .section { padding: 68px 0; }
+            .profile-caption { font-size: .68rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container" aria-label="Navigasi utama">
+            <a href="#home" class="logo">Nicholas<span>.</span><small>DEVELOPER / PIXELVERSE</small></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-menu">
+                <i class="bx bx-menu"></i>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container" id="home">
+            <div class="hero-content">
+                <div class="status"><span class="status-dot"></span> WELCOME TO MY DIGITAL SPACE</div>
+                <h1>Hi, I'm<br><span class="gradient">Nicholas Wijaya</span><br><span class="role">Web Designer &amp; Developer</span></h1>
+                <p class="hero-copy">
+                    Saya mengeksplorasi dunia teknologi melalui pengembangan web,
+                    desain digital, dan kreativitas. Mengubah ide menjadi karya,
+                    satu baris kode dalam satu waktu.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn" href="#work"><i class="bx bx-rocket"></i> Explore My Work</a>
+                    <a class="btn btn-ghost" href="#contact"><i class="bx bx-message-square-detail"></i> Get in Touch</a>
                 </div>
-
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
+                <div class="socials" aria-label="Media sosial">
+                    <a href="https://www.facebook.com/nicholaswijayareal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://instagram.com/nichlswjy_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://github.com/dikodein" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bx bxl-github"></i></a>
                 </div>
+            </div>
+            <div class="profile-frame">
+                <img class="profile-image" src="assets/img/perfil.png" alt="Foto profil Nicholas Wijaya" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+                <div class="profile-fallback" style="display:none;aspect-ratio:4/4.4;place-items:center;background:#101027;color:#00f5ff;font-size:5rem;"><i class="bx bx-user"></i></div>
+                <div class="profile-caption"><span>PLAYER: NICHOLAS WIJAYA</span><span>● ONLINE</span></div>
+            </div>
+        </section>
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">01 / About Me</div>
+                    <h2 class="section-title">The person behind the <span class="gradient">code.</span></h2>
+                    <p class="section-desc">Mengenal perjalanan, motivasi, dan hal yang mendorong saya untuk terus belajar.</p>
                 </div>
-            </nav>
-        </header>
-
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Nicholas Wijaya</span><br> Web Designer</h1>
-
-                    <a href="https://instagram.com/nichlswjy_" class="button"><i class='bx bxl-instagram' ></i> Contact via Instagram</a>
-                </div>
-
-                <div class="home__social">
-                    <a href="https://www.facebook.com/nicholaswijayareal" class="home__social-icon"><i class='bx bxl-facebook'></i></a>
-                    <a href="https://instagram.com/nichlswjy_" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-                    <a href="https://dikodein.github.io" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
-
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
-
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
-
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
+                <div class="about-grid">
+                    <div class="about-photo">
+                        <img src="assets/img/about.jpg" alt="Foto Nicholas Wijaya" loading="lazy" onerror="this.style.display='none';">
                     </div>
-                    
                     <div>
-                        <h2 class="about__subtitle">I'am Nicholas Wijaya</h2>
-                        <p class="about__text">Saya adalah pribadi yang memiliki ambisi besar untuk meraih kesuksesan dan membahagiakan kedua orang tua. Lahir di Indramayu pada 24 September 2005, saya dibesarkan dalam lingkungan keluarga yang sederhana namun penuh kasih sayang. Sejak kecil, saya bercita-cita menjadi seorang polisi sebagai wujud pengabdian kepada masyarakat, namun semua itu tidak bisa ku gapai karena fisik saya tidak memenuhi syarat. Saya merupakan lulusan SMK dengan jurusan Teknik Komputer dan Jaringan, dengan nilai rata-rata 82. Semangat belajar dan tekad yang kuat menjadi bekal utama saya dalam menghadapi tantangan di masa depan.</p>           
-                    </div>                                   
-                </div>
-            </section>
-
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
-
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Profesional Skills</h2>
-                        <p class="skills__text">Berikut ini adalah skill saya dalam pemrograman dan juga olah data.</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">HTML5</span>
-                            </div>
-                            <div class="skills__bar skills__html">
-
-                            </div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">CSS3</span>
-                            </div>
-                            <div class="skills__bar skills__css">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon' ></i>
-                                <span class="skills__name">JAVASCRIPT</span>
-                            </div>
-                            <div class="skills__bar skills__js">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">70%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-php skills__icon' ></i> 
-                                <span class="skills__name">PHP</span>
-                            </div>
-                            <div class="skills__bar skills__php">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">Design</span>
-                            </div>
-                            <div class="skills__bar skills__design">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">Writer</span>
-                            </div>
-                            <div class="skills__bar skills__writer">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-data skills__icon'></i>
-                                <span class="skills__name">Data Entry</span>
-                            </div>
-                            <div class="skills__bar skills__dataentry">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">75%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                               <i class='bx bx-network-chart skills__icon'></i>
-                                <span class="skills__name">Networking</span>
-                            </div>
-                            <div class="skills__bar skills__network">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
+                        <div class="pixel-label">// PLAYER PROFILE</div>
+                        <h3 style="font-size:1.55rem;margin:13px 0 17px;">I'm Nicholas Wijaya</h3>
+                        <p class="about-copy">
+                            Saya adalah pribadi yang memiliki ambisi besar untuk meraih kesuksesan
+                            dan membahagiakan kedua orang tua. Lahir di Indramayu pada 24 September
+                            2005, saya dibesarkan dalam lingkungan keluarga yang sederhana namun
+                            penuh kasih sayang.
+                        </p>
+                        <p class="about-copy">
+                            Sejak kecil, saya bercita-cita menjadi seorang polisi sebagai wujud
+                            pengabdian kepada masyarakat, tetapi cita-cita tersebut tidak dapat
+                            saya lanjutkan karena persyaratan fisik. Saya merupakan lulusan SMK
+                            jurusan Teknik Komputer dan Jaringan, dengan nilai rata-rata 82.
+                            Semangat belajar dan tekad yang kuat menjadi bekal saya untuk terus
+                            berkembang dan menghadapi tantangan masa depan.
+                        </p>
+                        <div class="feature-list">
+                            <div class="feature"><i class="bx bx-code-alt"></i> Web Development</div>
+                            <div class="feature"><i class="bx bx-palette"></i> Digital Design</div>
+                            <div class="feature"><i class="bx bx-network-chart"></i> Networking</div>
+                            <div class="feature"><i class="bx bx-edit-alt"></i> Writing &amp; Data</div>
                         </div>
                     </div>
-                    
-                    <div>              
-                        <img src="assets/img/work3.jpg" alt="" class="skills__img">
-                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
-
-                <div class="work__container bd-grid">
-                    <a href="" class="work__img">
-                        <img src="assets/img/work1.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work2.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work3.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work4.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work5.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                    </a>
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">02 / Skill Tree</div>
+                    <h2 class="section-title">Tools in my <span class="gradient">inventory.</span></h2>
+                    <p class="section-desc">Keahlian yang saya gunakan dan terus kembangkan dalam proses belajar dan berkarya.</p>
                 </div>
-            </section>
+                <div class="skills-grid">
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bxl-html5"></i> HTML5</span><span class="skill-value">95%</span></div><div class="skill-track"><div class="skill-fill" style="--level:95%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bxl-css3"></i> CSS3</span><span class="skill-value">85%</span></div><div class="skill-track"><div class="skill-fill" style="--level:85%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bxl-javascript"></i> JavaScript</span><span class="skill-value">70%</span></div><div class="skill-track"><div class="skill-fill" style="--level:70%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bxl-php"></i> PHP</span><span class="skill-value">80%</span></div><div class="skill-track"><div class="skill-fill" style="--level:80%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bx-palette"></i> Design</span><span class="skill-value">80%</span></div><div class="skill-track"><div class="skill-fill" style="--level:80%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bx-edit-alt"></i> Writing</span><span class="skill-value">85%</span></div><div class="skill-track"><div class="skill-fill" style="--level:85%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bx-data"></i> Data Entry</span><span class="skill-value">75%</span></div><div class="skill-track"><div class="skill-fill" style="--level:75%"></div></div></div>
+                    <div class="skill"><div class="skill-top"><span class="skill-name"><i class="bx bx-network-chart"></i> Networking</span><span class="skill-value">85%</span></div><div class="skill-track"><div class="skill-fill" style="--level:85%"></div></div></div>
+                </div>
+                <p class="form-note" style="text-align:center;margin-top:18px;">Persentase merupakan estimasi kemampuan yang tercantum pada portfolio.</p>
+            </div>
+        </section>
 
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
+        <section class="section" id="work">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">03 / Selected Work</div>
+                    <h2 class="section-title">Things I've <span class="gradient">created.</span></h2>
+                    <p class="section-desc">Beberapa visual proyek dari koleksi portfolio. Pilih gambar untuk melihatnya dalam ukuran penuh.</p>
+                </div>
+                <div class="work-grid">
+                    <a href="assets/img/work1.jpg" class="work-card work-lightbox"><img src="assets/img/work1.jpg" alt="Project showcase 1" loading="lazy"><div class="work-caption"><span>Project 01</span><i class="bx bx-expand-alt"></i></div></a>
+                    <a href="assets/img/work2.jpg" class="work-card work-lightbox"><img src="assets/img/work2.jpg" alt="Project showcase 2" loading="lazy"><div class="work-caption"><span>Project 02</span><i class="bx bx-expand-alt"></i></div></a>
+                    <a href="assets/img/work3.jpg" class="work-card work-lightbox"><img src="assets/img/work3.jpg" alt="Project showcase 3" loading="lazy"><div class="work-caption"><span>Project 03</span><i class="bx bx-expand-alt"></i></div></a>
+                    <a href="assets/img/work4.jpg" class="work-card work-lightbox"><img src="assets/img/work4.jpg" alt="Project showcase 4" loading="lazy"><div class="work-caption"><span>Project 04</span><i class="bx bx-expand-alt"></i></div></a>
+                    <a href="assets/img/work5.jpg" class="work-card work-lightbox"><img src="assets/img/work5.jpg" alt="Project showcase 5" loading="lazy"><div class="work-caption"><span>Project 05</span><i class="bx bx-expand-alt"></i></div></a>
+                    <a href="assets/img/work6.jpg" class="work-card work-lightbox"><img src="assets/img/work6.jpg" alt="Project showcase 6" loading="lazy"><div class="work-caption"><span>Project 06</span><i class="bx bx-expand-alt"></i></div></a>
+                </div>
+            </div>
+        </section>
 
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Send" class="contact__button button">
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">04 / Establish Connection</div>
+                    <h2 class="section-title">Let's build something <span class="gradient">great.</span></h2>
+                    <p class="section-desc">Punya ide, pertanyaan, atau peluang kolaborasi? Kirim pesan melalui formulir ini.</p>
+                </div>
+                <div class="contact-box">
+                    <form class="contact-form" id="contact-form">
+                        <div class="contact-grid">
+                            <input class="field" type="text" name="name" placeholder="Nama kamu" aria-label="Nama kamu" required maxlength="100">
+                            <input class="field" type="email" name="email" placeholder="Alamat email" aria-label="Alamat email" required maxlength="150">
+                        </div>
+                        <input class="field" type="text" name="subject" placeholder="Subjek pesan" aria-label="Subjek pesan" required maxlength="150">
+                        <textarea class="field" name="message" placeholder="Tulis pesan kamu di sini..." aria-label="Isi pesan" required maxlength="3000"></textarea>
+                        <button type="submit" class="btn"><i class="bx bx-send"></i> Prepare Email</button>
+                        <p class="form-note">Tombol akan membuka aplikasi email di perangkat kamu. Pesan tidak dikirim atau disimpan oleh website ini.</p>
                     </form>
                 </div>
-            </section>
-        </main>
-
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Nicholas Wijaya</p>
-            <div class="footer__social">
-            	
-            	<a href="https://www.facebook.com/niko.new.376" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://instagram.com/nichlswjy_" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://dikodein.github.io" class="footer__icon"><i class='bx bxl-github' ></i></a>
-                
             </div>
-            <p class="footer__copy">&#169; Nicholas Wijaya. All rigths reserved</p>
-        </footer>
+        </section>
+    </main>
 
+    <footer class="footer">
+        <div class="container">
+            <a href="#home" class="footer-name">Nicholas <span>Wijaya.</span></a>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/niko.new.376" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://instagram.com/nichlswjy_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://github.com/dikodein" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+            </div>
+            <p class="footer-copy">&copy; <span id="year"></span> Nicholas Wijaya. All rights reserved.</p>
+        </div>
+    </footer>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+    <a href="#home" class="back-top" id="back-top" aria-label="Kembali ke atas"><i class="bx bx-up-arrow-alt"></i></a>
 
-        <!--===== MAIN JS =====-->
-        <script>
-            /*===== MENU SHOW =====*/ 
-const showMenu = (toggleId, navId) =>{
-    const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId)
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau gambar" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(3,3,12,.94);padding:25px;align-items:center;justify-content:center;cursor:zoom-out;">
+        <button id="lightbox-close" aria-label="Tutup gambar" style="position:absolute;right:22px;top:18px;border:1px solid rgba(0,245,255,.4);background:#11112b;color:#00f5ff;font-size:2rem;line-height:1;padding:4px 12px;cursor:pointer;">&times;</button>
+        <img id="lightbox-image" src="" alt="Pratinjau proyek" style="max-width:min(100%,1000px);max-height:85vh;object-fit:contain;border:1px solid rgba(0,245,255,.3);">
+    </div>
 
-    if(toggle && nav){
-        toggle.addEventListener('click', ()=>{
-            nav.classList.toggle('show')
-        })
-    }
-}
-showMenu('nav-toggle','nav-menu')
+    <script>
+        // Mobile navigation
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
-/*==================== REMOVE MENU MOBILE ====================*/
-const navLink = document.querySelectorAll('.nav__link')
+        navToggle.addEventListener('click', () => {
+            const opened = navMenu.classList.toggle('show');
+            navToggle.setAttribute('aria-expanded', String(opened));
+            navToggle.setAttribute('aria-label', opened ? 'Tutup menu' : 'Buka menu');
+            navToggle.innerHTML = opened ? '<i class="bx bx-x"></i>' : '<i class="bx bx-menu"></i>';
+        });
 
-function linkAction(){
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Buka menu');
+                navToggle.innerHTML = '<i class="bx bx-menu"></i>';
+            });
+        });
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-const sections = document.querySelectorAll('section[id]')
+        // Active navigation link
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-const scrollActive = () =>{
-    const scrollDown = window.scrollY
+        function updateActiveLink() {
+            let current = 'home';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 130) current = section.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', updateActiveLink, { passive: true });
+        updateActiveLink();
 
-  sections.forEach(current =>{
-        const sectionHeight = current.offsetHeight,
-              sectionTop = current.offsetTop - 58,
-              sectionId = current.getAttribute('id'),
-              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-        
-        if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-            sectionsClass.classList.add('active-link')
-        }else{
-            sectionsClass.classList.remove('active-link')
-        }                                                    
-    })
-}
-window.addEventListener('scroll', scrollActive)
+        // Back to top
+        const backTop = document.getElementById('back-top');
+        window.addEventListener('scroll', () => {
+            backTop.classList.toggle('show', window.scrollY > 450);
+        }, { passive: true });
 
-/*===== SCROLL REVEAL ANIMATION =====*/
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2000,
-    delay: 200,
-//     reset: true
-});
+        // Dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
-sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
-sr.reveal('.home__social-icon',{ interval: 200}); 
-sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
-            
-        </script>
-    </body>
-  </html>
-  
+        // Project image lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            lightboxImage.src = '';
+            document.body.style.overflow = '';
+        };
+        document.querySelectorAll('.work-lightbox').forEach(card => {
+            card.addEventListener('click', event => {
+                event.preventDefault();
+                lightboxImage.src = card.href;
+                lightboxImage.alt = card.querySelector('img').alt;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('lightbox-close').focus();
+            });
+        });
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeLightbox();
+        });
+
+        // Contact form: opens the visitor's email app; no backend is required.
+        document.getElementById('contact-form').addEventListener('submit', event => {
+            event.preventDefault();
+            const form = new FormData(event.currentTarget);
+            const name = String(form.get('name') || '').trim();
+            const email = String(form.get('email') || '').trim();
+            const subject = String(form.get('subject') || '').trim();
+            const message = String(form.get('message') || '').trim();
+
+            const body = `Nama: ${name}\nEmail: ${email}\n\n${message}`;
+            const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailto;
+        });
+    </script>
+</body>
+</html>
