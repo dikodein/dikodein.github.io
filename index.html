@@ -1,170 +1,813 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="author" content="Wolf.Def">
-    <meta name="description" content="dikodein aja dulu">
-    <title>dikodein - Home Page</title>
-    
-    <link rel="icon" href="img/serigala02.jpg" type="image/jpg">
+    <meta name="description" content="dikodein — Explore the Pixelverse. Learn to code, build digital projects, and create something extraordinary.">
+    <meta name="theme-color" content="#080816">
 
-    <!-- Bootstrap CSS (Latest Version) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>dikodein — Enter the Pixelverse</title>
 
-    <!-- Boxicons for Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" href="img/serigala02.jpg" type="image/jpeg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
-        /* Custom Styles */
-        body {
-            background-color: #f5f5f5; /* Light gray background */
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
+        :root {
+            --bg: #080816;
+            --bg-soft: #101027;
+            --panel: #11112b;
+            --cyan: #00f5ff;
+            --purple: #a855f7;
+            --pink: #ff4ecd;
+            --green: #39ff88;
+            --white: #f4f4ff;
+            --muted: #a2a2c4;
+            --border: rgba(0, 245, 255, .2);
+            --pixel-font: "Press Start 2P", monospace;
+            --body-font: "Space Grotesk", sans-serif;
         }
 
-        /* Navbar */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 15% 10%, rgba(93, 40, 170, .17), transparent 35%),
+                radial-gradient(ellipse at 85% 35%, rgba(0, 245, 255, .08), transparent 35%),
+                var(--bg);
+            color: var(--white);
+            font-family: var(--body-font);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 245, 255, .035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, .035) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .pixel {
+            font-family: var(--pixel-font);
+            line-height: 1.8;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--cyan);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 24px;
+            height: 3px;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+        }
+
+        .section-title {
+            font-size: clamp(1.7rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-description {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        .text-gradient {
+            color: var(--cyan);
+            background: linear-gradient(90deg, var(--cyan), #a78bfa, var(--pink));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* NAVBAR */
         .navbar {
-            background-color: #2c3e50; /* Dark gray for navbar */
-            position: sticky;
-            top: 0;
+            padding: 16px 0;
+            background: rgba(8, 8, 22, .86);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
         }
 
         .navbar-brand {
-            color: #ecf0f1; /* Light gray for text */
-            font-size: 1.5rem;
-            font-weight: bold;
             display: flex;
             align-items: center;
+            gap: 12px;
+            color: var(--white) !important;
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
-        .navbar-brand img {
-            width: 40px;  /* Size of the circular image */
-            height: 40px;
-            border-radius: 50%; /* Make image circular */
-            margin-right: 10px; /* Space between image and text */
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border: 2px solid var(--cyan);
+            object-fit: cover;
+            image-rendering: pixelated;
+            box-shadow: 4px 4px 0 rgba(0, 245, 255, .15);
         }
 
-        .navbar-brand:hover {
-            color: #f39c12;
+        .brand-name span {
+            color: var(--cyan);
+        }
+
+        .brand-subtitle {
+            display: block;
+            color: var(--muted);
+            font-size: .58rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        .navbar-nav {
+            gap: 8px;
         }
 
         .navbar-nav .nav-link {
-            color: #ecf0f1; /* Light gray for links */
-            font-size: 1.1rem;
+            color: #c5c5df;
+            font-size: .92rem;
+            font-weight: 600;
+            padding: 10px 13px !important;
+            transition: .25s;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #f39c12; /* Gold accent on hover */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cyan);
         }
 
         .navbar-toggler {
-            background-color: #ecf0f1;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 8px 10px;
         }
 
-        /* Hero Section */
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 2px rgba(0, 245, 255, .2);
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* BUTTONS */
+        .btn-pixel {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            color: var(--bg);
+            background: var(--cyan);
+            border: 2px solid var(--cyan);
+            border-radius: 0;
+            font-family: var(--body-font);
+            font-size: .95rem;
+            font-weight: 700;
+            transition: transform .2s, box-shadow .2s, background .2s;
+            box-shadow: 5px 5px 0 rgba(0, 245, 255, .18);
+        }
+
+        .btn-pixel:hover {
+            color: var(--bg);
+            background: #7cffff;
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 rgba(0, 245, 255, .22);
+        }
+
+        .btn-outline-pixel {
+            color: var(--white);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .25);
+            box-shadow: none;
+        }
+
+        .btn-outline-pixel:hover {
+            color: var(--cyan);
+            background: rgba(0, 245, 255, .06);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, .08);
+        }
+
+        /* HERO */
         .hero-section {
-            background: linear-gradient(135deg, #34495e, #2c3e50); /* Dark gradient */
-            color: #ecf0f1;
-            padding: 100px 0;
-            text-align: center;
-            border-bottom: 5px solid #f39c12; /* Gold accent border */
+            min-height: 690px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 105px 0 95px;
+            overflow: hidden;
         }
 
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #ecf0f1; /* Light gray text */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            right: -180px;
+            top: 60px;
+            border: 1px solid rgba(168, 85, 247, .15);
+            box-shadow:
+                0 0 0 35px rgba(168, 85, 247, .025),
+                0 0 0 70px rgba(168, 85, 247, .02);
+            transform: rotate(45deg);
+            pointer-events: none;
         }
 
-        .hero-section p {
-            font-size: 1.25rem;
-            margin-top: 20px;
-            color: #bdc3c7; /* Slightly muted text color */
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
-        .icon-box {
-            font-size: 3rem;
-            margin: 15px;
-            color: #ecf0f1;
-            transition: color 0.3s ease;
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 13px;
+            border: 1px solid rgba(57, 255, 136, .28);
+            background: rgba(57, 255, 136, .055);
+            color: var(--green);
+            font-size: .76rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        .icon-box:hover {
-            color: #f39c12; /* Gold accent on hover */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            box-shadow: 0 0 10px var(--green);
+            animation: pulse 1.6s infinite;
         }
 
-        /* Content Section */
-        .content-section {
-            background-color: #ffffff;
-            padding: 60px 0;
-            text-align: center;
+        .hero-title {
+            font-size: clamp(2.3rem, 6.2vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -4px;
+            line-height: 1.12;
+            margin-bottom: 26px;
         }
 
-        .content-section h2 {
-            font-size: 2rem;
-            color: #2c3e50; /* Dark gray for headers */
-            margin-bottom: 20px;
+        .hero-description {
+            max-width: 590px;
+            color: var(--muted);
+            font-size: 1.12rem;
+            line-height: 1.9;
+            margin-bottom: 32px;
         }
 
-        .content-section p {
-            font-size: 1.125rem;
-            color: #7f8c8d; /* Muted gray text */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        /* Footer */
-        .footer {
-            background-color: #2c3e50; /* Dark gray footer */
-            color: #ecf0f1;
-            text-align: center;
-            padding: 20px 0;
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 38px;
+            color: #8585aa;
+            font-size: .82rem;
         }
 
-        .footer a {
-            color: #f39c12; /* Gold accent for links */
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Button Style */
-        .btn-custom {
-            background-color: #f39c12; /* Gold button */
-            color: white;
-            padding: 10px 30px;
-            border-radius: 30px;
+        .hero-meta i {
+            color: var(--cyan);
             font-size: 1.1rem;
-            border: none;
-            transition: background-color 0.3s ease;
+            vertical-align: middle;
+            margin-right: 5px;
         }
 
-        .btn-custom:hover {
-            background-color: #e67e22; /* Slightly darker gold on hover */
+        /* PIXEL TERMINAL */
+        .terminal-wrap {
+            position: relative;
+            max-width: 450px;
+            margin: 35px auto 0;
+        }
+
+        .terminal-glow {
+            position: absolute;
+            inset: 15%;
+            background: rgba(112, 56, 255, .24);
+            filter: blur(75px);
+            z-index: -1;
+        }
+
+        .terminal {
+            border: 1px solid rgba(0, 245, 255, .35);
+            background: rgba(14, 14, 37, .95);
+            box-shadow: 10px 10px 0 rgba(0, 245, 255, .055),
+                        0 0 45px rgba(0, 245, 255, .06);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 17px;
+            background: rgba(0, 245, 255, .045);
+            border-bottom: 1px solid var(--border);
+            font-size: .72rem;
+            color: #b9b9d6;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dots span {
+            width: 9px;
+            height: 9px;
+            background: var(--pink);
+        }
+
+        .terminal-dots span:nth-child(2) {
+            background: #ffd166;
+        }
+
+        .terminal-dots span:nth-child(3) {
+            background: var(--green);
+        }
+
+        .terminal-body {
+            padding: 27px 23px 30px;
+        }
+
+        .terminal-line {
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: .9rem;
+            overflow-wrap: anywhere;
+        }
+
+        .terminal-line .prompt {
+            color: var(--green);
+            margin-right: 8px;
+        }
+
+        .terminal-line .command {
+            color: var(--cyan);
+        }
+
+        .terminal-line .success {
+            color: var(--green);
+        }
+
+        .terminal-divider {
+            border: 0;
+            border-top: 1px dashed rgba(255, 255, 255, .15);
+            margin: 22px 0;
+        }
+
+        .terminal-badge {
+            display: inline-block;
+            padding: 7px 10px;
+            margin: 4px 3px 0 0;
+            border: 1px solid rgba(168, 85, 247, .35);
+            color: #d8b4fe;
+            font-size: .72rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            margin-left: 4px;
+            background: var(--cyan);
+            vertical-align: middle;
+            animation: blink 1s steps(2, start) infinite;
+        }
+
+        /* TICKER */
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(0, 245, 255, .025);
+        }
+
+        .ticker-track {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+            min-width: max-content;
+            padding: 21px 20px;
+        }
+
+        .ticker-item {
+            color: #8b8bab;
+            font-family: var(--pixel-font);
+            font-size: .66rem;
+        }
+
+        .ticker-item span {
+            color: var(--cyan);
+            margin-right: 10px;
+        }
+
+        /* PANELS */
+        .pixel-panel {
+            height: 100%;
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(20, 20, 49, .94), rgba(13, 13, 31, .94));
+            border: 1px solid rgba(255, 255, 255, .09);
+            position: relative;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+        }
+
+        .pixel-panel::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 30px;
+            height: 3px;
+            background: var(--cyan);
+        }
+
+        .pixel-panel:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 245, 255, .35);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, .2);
+        }
+
+        .panel-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(0, 245, 255, .08);
+            border: 1px solid rgba(0, 245, 255, .25);
+            color: var(--cyan);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .pixel-panel h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 13px;
+        }
+
+        .pixel-panel p {
+            color: var(--muted);
+            line-height: 1.85;
+            margin: 0;
+        }
+
+        /* ABOUT */
+        .about-section {
+            background: linear-gradient(180deg, transparent, rgba(168, 85, 247, .035), transparent);
+        }
+
+        .about-copy {
+            color: var(--muted);
+            line-height: 2;
+        }
+
+        .about-feature {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-top: 24px;
+        }
+
+        .about-feature i {
+            color: var(--green);
+            font-size: 1.35rem;
+            margin-top: 2px;
+        }
+
+        .about-feature strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .about-feature span {
+            display: block;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.7;
+        }
+
+        .about-visual {
+            padding: 35px;
+            border: 1px solid rgba(168, 85, 247, .3);
+            background: rgba(17, 17, 43, .72);
+            position: relative;
+        }
+
+        .about-visual-label {
+            color: var(--purple);
+            font-family: var(--pixel-font);
+            font-size: .67rem;
+            margin-bottom: 24px;
+        }
+
+        .code-block {
+            color: #bfc0df;
+            font-size: .9rem;
+            line-height: 2.1;
+            overflow-wrap: anywhere;
+        }
+
+        .code-purple { color: #c084fc; }
+        .code-cyan { color: var(--cyan); }
+        .code-green { color: var(--green); }
+        .code-muted { color: #75759d; }
+
+        /* SERVICES */
+        .service-number {
+            font-family: var(--pixel-font);
+            color: rgba(0, 245, 255, .2);
+            font-size: 1.1rem;
+            margin-bottom: 22px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 22px;
+            color: var(--cyan);
+            font-weight: 700;
+            font-size: .9rem;
+        }
+
+        .service-link:hover {
+            color: var(--pink);
+        }
+
+        /* CTA */
+        .contact-box {
+            position: relative;
+            padding: 65px 25px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at center, rgba(0, 245, 255, .08), transparent 65%),
+                var(--panel);
+            border: 1px solid rgba(0, 245, 255, .3);
+            overflow: hidden;
+        }
+
+        .contact-box::before,
+        .contact-box::after {
+            content: "";
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            border: 2px solid rgba(168, 85, 247, .45);
+            transform: rotate(45deg);
+        }
+
+        .contact-box::before {
+            top: -35px;
+            left: -35px;
+        }
+
+        .contact-box::after {
+            right: -35px;
+            bottom: -35px;
+        }
+
+        .contact-box p {
+            max-width: 580px;
+            margin: 0 auto 27px;
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            background: rgba(5, 5, 16, .65);
+        }
+
+        .footer-brand {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .footer-brand span {
+            color: var(--cyan);
+        }
+
+        .footer p {
+            color: #8585a8;
+            font-size: .85rem;
+            margin: 8px 0 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-end;
+        }
+
+        .footer-links a {
+            color: #aaaac7;
+            font-size: .88rem;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan);
+        }
+
+        .back-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            color: var(--cyan);
+            background: #11112b;
+            border: 1px solid var(--border);
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: .25s;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+
+        @keyframes pulse {
+            50% { opacity: .35; }
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                padding: 15px 0 5px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 10px 0 !important;
+            }
+
+            .hero-section {
+                min-height: auto;
+                padding: 85px 0 75px;
+            }
+
+            .hero-title {
+                letter-spacing: -2px;
+            }
+
+            .terminal-wrap {
+                max-width: 550px;
+                margin-top: 55px;
+            }
+
+            .section-padding {
+                padding: 75px 0;
+            }
+
+            .footer-links {
+                justify-content: flex-start;
+                margin-top: 22px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-section {
+                padding: 65px 0;
+            }
+
+            .hero-title {
+                font-size: clamp(2.15rem, 10vw, 3.2rem);
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-actions .btn-pixel {
+                width: 100%;
+            }
+
+            .hero-meta {
+                gap: 13px;
+            }
+
+            .pixel-panel {
+                padding: 24px;
+            }
+
+            .about-visual {
+                padding: 24px 18px;
+            }
+
+            .contact-box {
+                padding: 48px 20px;
+            }
+
+            .ticker-track {
+                gap: 25px;
+            }
+
+            .ticker-item {
+                font-size: .55rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
         }
     </style>
-
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="img/serigala.jpg" alt="Serigala Logo"> dikodein
+            <a class="navbar-brand" href="#home" aria-label="dikodein Home">
+                <img src="img/serigala.jpg" alt="Logo dikodein" class="brand-logo">
+                <span class="brand-name">
+                    dikodein<span>.</span>
+                    <small class="brand-subtitle">PIXELVERSE / 001</small>
+                </span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Buka navigasi">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#home">Home</a>
                     </li>
@@ -180,85 +823,369 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="src/dok.html" class="btn-pixel">
+                            <i class="bx bx-book-open"></i> Docs
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero-section" id="home">
-        <h1>Welcome to dikodein</h1>
-        <p>Your coding journey starts here.</p>
-        <div class="d-flex justify-content-center">
-            <i class="bx bx-code icon-box"></i>
-            <i class="bx bx-laptop icon-box"></i>
-            <i class="bx bx-brain icon-box"></i>
-        </div>
-        <a href="src/dok.html" class="btn-custom mt-4">Documentation</a>
-    </div>
+    <main>
+        <!-- HERO -->
+        <section class="hero-section" id="home">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 hero-content">
+                        <div class="status-pill">
+                            <span class="status-dot"></span>
+                            WELCOME TO MY DIGITAL UNIVERSE
+                        </div>
 
-    <!-- About Section -->
-    <div id="about" class="content-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>About dikodein</h2>
-                    <p>dikodein is your go-to place for learning programming. Whether you're a beginner or an advanced coder, you'll find tutorials, resources, and projects that will help you grow your skills. Let's build something amazing together!</p>
-                </div>
-                <div class="col-md-6">
-                    <h2>Why Learn Programming?</h2>
-                    <p>Programming is the key to innovation. It allows you to solve real-world problems and create tools that can change the world. Join the dikodein community and start your journey today!</p>
+                        <h1 class="hero-title">
+                            Enter the<br>
+                            <span class="text-gradient">Pixelverse.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Bukan sekadar menulis kode. Bangun ide, ciptakan
+                            proyek, dan jelajahi dunia teknologi bersama
+                            <strong>dikodein</strong>. Your imagination,
+                            your code, your universe.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="src/project/index.html" class="btn-pixel">
+                                <i class="bx bx-joystick"></i>
+                                Explore Projects
+                            </a>
+                            <a href="src/dok.html" class="btn-pixel btn-outline-pixel">
+                                <i class="bx bx-terminal"></i>
+                                Documentation
+                            </a>
+                        </div>
+
+                        <div class="hero-meta">
+                            <span><i class="bx bx-code-alt"></i> Build & Create</span>
+                            <span><i class="bx bx-rocket"></i> Explore Ideas</span>
+                            <span><i class="bx bx-cube-alt"></i> Enter the Future</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="terminal-wrap">
+                            <div class="terminal-glow"></div>
+
+                            <div class="terminal">
+                                <div class="terminal-header">
+                                    <span>dikodein@pixelverse:~</span>
+                                    <div class="terminal-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="terminal-body">
+                                    <div class="terminal-line">
+                                        <span class="prompt">$</span>
+                                        <span class="command">initialize_universe</span>
+                                    </div>
+
+                                    <div class="terminal-line">
+                                        <span class="success">[SUCCESS]</span>
+                                        &nbsp; Universe initialized.
+                                    </div>
+
+                                    <div class="terminal-line">
+                                        <span class="success">[SUCCESS]</span>
+                                        &nbsp; Creativity engine online.
+                                    </div>
+
+                                    <div class="terminal-line">
+                                        <span class="success">[SUCCESS]</span>
+                                        &nbsp; Developer mode activated.
+                                    </div>
+
+                                    <hr class="terminal-divider">
+
+                                    <div class="terminal-line">
+                                        <span class="prompt">$</span>
+                                        cat skills.json
+                                    </div>
+
+                                    <div class="terminal-badge">HTML</div>
+                                    <div class="terminal-badge">CSS</div>
+                                    <div class="terminal-badge">PHP</div>
+                                    <div class="terminal-badge">JAVASCRIPT</div>
+
+                                    <hr class="terminal-divider">
+
+                                    <div class="terminal-line mb-0">
+                                        <span class="prompt">$</span>
+                                        <span class="command">create_something_great</span><span class="cursor"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Services Section -->
-    <div id="services" class="content-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p>We provide a variety of services to help you master coding, including tutorials, one-on-one mentoring, and coding challenges.</p>
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Interactive Tutorials</h4>
-                    <p>Learn programming interactively with hands-on coding exercises.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Project-Based Learning</h4>
-                    <p>Build real-world projects to showcase your skills.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Mentorship</h4>
-                    <p>Get guidance from experienced developers on your learning journey.</p>
-                </div>
+        <!-- TECHNOLOGY TICKER -->
+        <div class="ticker" aria-label="Teknologi">
+            <div class="ticker-track">
+                <div class="ticker-item"><span>✦</span> CREATIVE CODING</div>
+                <div class="ticker-item"><span>✦</span> WEB DEVELOPMENT</div>
+                <div class="ticker-item"><span>✦</span> DIGITAL PROJECTS</div>
+                <div class="ticker-item"><span>✦</span> PIXELVERSE</div>
+                <div class="ticker-item"><span>✦</span> CREATIVE CODING</div>
             </div>
         </div>
-    </div>
 
-    <!-- Contact Section -->
-    <div id="contact" class="content-section">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or need help, feel free to reach out to us!</p>
-            <form>
-                <!-- WhatsApp Link -->
-                <div class="mt-4">
-                    <a href="https://wa.me/+6283101214581" target="_blank" class="btn-custom">
-                        <i class="bx bx-whatsapp"></i> Contact WhatsApp
+        <!-- ABOUT -->
+        <section class="section-padding about-section" id="about">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <span class="section-label">01 / About Us</span>
+
+                        <h2 class="section-title">
+                            We turn ideas into<br>
+                            <span class="text-gradient">digital reality.</span>
+                        </h2>
+
+                        <p class="about-copy">
+                            <strong>dikodein</strong> adalah ruang untuk
+                            bereksperimen dengan teknologi, belajar pemrograman,
+                            dan mengembangkan ide menjadi karya digital.
+                            Dari baris kode sederhana hingga proyek yang lebih
+                            kompleks, setiap langkah adalah bagian dari
+                            perjalanan seorang developer.
+                        </p>
+
+                        <p class="about-copy">
+                            Tidak harus langsung sempurna. Mulai dari satu
+                            ide, tulis kode pertamamu, lalu terus berkembang.
+                            Your next level starts here.
+                        </p>
+
+                        <div class="about-feature">
+                            <i class="bx bx-check-shield"></i>
+                            <div>
+                                <strong>Learn by Building</strong>
+                                <span>Belajar melalui eksplorasi dan pembuatan proyek nyata.</span>
+                            </div>
+                        </div>
+
+                        <div class="about-feature">
+                            <i class="bx bx-code-block"></i>
+                            <div>
+                                <strong>Create Without Limits</strong>
+                                <span>Kembangkan ide dan temukan solusi dengan kode.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="about-visual">
+                            <div class="about-visual-label">
+                                &lt; THE DEVELOPER SPACE /&gt;
+                            </div>
+
+                            <div class="code-block">
+                                <div><span class="code-muted">// Your journey starts here</span></div>
+                                <div><span class="code-purple">const</span> developer = {</div>
+                                <div>&nbsp;&nbsp;name: <span class="code-green">"dikodein"</span>,</div>
+                                <div>&nbsp;&nbsp;mindset: <span class="code-green">"keep_learning"</span>,</div>
+                                <div>&nbsp;&nbsp;creativity: <span class="code-cyan">Infinity</span>,</div>
+                                <div>&nbsp;&nbsp;mission: <span class="code-green">"build_the_future"</span></div>
+                                <div>};</div>
+                                <br>
+                                <div><span class="code-purple">function</span> <span class="code-cyan">createFuture</span>() {</div>
+                                <div>&nbsp;&nbsp;<span class="code-purple">return</span> developer.mindset;</div>
+                                <div>}</div>
+                                <br>
+                                <div><span class="code-muted">// Status: ready to create_</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="section-padding" id="services">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-label">02 / What We Do</span>
+                    <h2 class="section-title">
+                        Choose Your <span class="text-gradient">Adventure.</span>
+                    </h2>
+                    <p class="section-description">
+                        Setiap perjalanan developer dimulai dengan rasa ingin tahu.
+                        Pilih jalurmu dan mulai membangun sesuatu yang berarti.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <article class="pixel-panel">
+                            <div class="service-number">LVL. 01</div>
+                            <div class="panel-icon">
+                                <i class="bx bx-book-open"></i>
+                            </div>
+                            <h3>Interactive Tutorials</h3>
+                            <p>
+                                Pelajari konsep pemrograman melalui panduan,
+                                eksperimen kode, dan eksplorasi teknologi
+                                secara bertahap.
+                            </p>
+                            <a href="src/dok.html" class="service-link">
+                                Explore Documentation <i class="bx bx-right-arrow-alt"></i>
+                            </a>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <article class="pixel-panel">
+                            <div class="service-number">LVL. 02</div>
+                            <div class="panel-icon">
+                                <i class="bx bx-cube-alt"></i>
+                            </div>
+                            <h3>Project Development</h3>
+                            <p>
+                                Bangun website, aplikasi, dan eksperimen digital.
+                                Ubah konsep menjadi proyek yang bisa
+                                dikembangkan lebih lanjut.
+                            </p>
+                            <a href="src/project/index.html" class="service-link">
+                                Explore Projects <i class="bx bx-right-arrow-alt"></i>
+                            </a>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <article class="pixel-panel">
+                            <div class="service-number">LVL. 03</div>
+                            <div class="panel-icon">
+                                <i class="bx bx-bulb"></i>
+                            </div>
+                            <h3>Creative Experiments</h3>
+                            <p>
+                                Eksplorasi ide baru, tantangan coding, dan
+                                pendekatan kreatif untuk menemukan solusi
+                                dari berbagai masalah.
+                            </p>
+                            <a href="#contact" class="service-link">
+                                Let's Connect <i class="bx bx-right-arrow-alt"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section-padding" id="contact">
+            <div class="container">
+                <div class="contact-box">
+                    <span class="section-label">03 / Connection Established</span>
+
+                    <h2 class="section-title">
+                        Have an idea?<br>
+                        <span class="text-gradient">Let's build it.</span>
+                    </h2>
+
+                    <p>
+                        Punya pertanyaan, ide kolaborasi, atau ingin berdiskusi
+                        tentang proyek digital? Hubungi kami dan mulai percakapan
+                        berikutnya.
+                    </p>
+
+                    <a href="https://wa.me/6283101214581"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn-pixel">
+                        <i class="bx bxl-whatsapp" style="font-size: 1.35rem;"></i>
+                        Connect via WhatsApp
                     </a>
+
+                    <div class="mt-4">
+                        <a href="https://github.com/dikodein"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-pixel btn-outline-pixel">
+                            <i class="bx bxl-github" style="font-size: 1.25rem;"></i>
+                            Find us on GitHub
+                        </a>
+                    </div>
                 </div>
-            </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <a href="#home" class="footer-brand">
+                        dikodein<span>.</span>
+                    </a>
+                    <p>
+                        Crafted with code, powered by imagination.
+                        <br>
+                        &copy; <span id="currentYear"></span> Wolf.Def. All rights reserved.
+                    </p>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="src/project/index.html">Projects</a>
+                        <a href="src/dok.html">Documentation</a>
+                        <a href="https://github.com/dikodein"
+                           target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>Created by <strong>Wolf.Def</strong> | <a href="https://github.com/dikodein" target="_blank">GitHub</a></p>
-    </div>
+    <!-- BACK TO TOP -->
+    <a href="#home" class="back-top" id="backTop" aria-label="Kembali ke atas">
+        <i class="bx bx-up-arrow-alt"></i>
+    </a>
 
-    <!-- Bootstrap JS (Latest Version) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Automatic copyright year
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+        // Back-to-top button
+        const backTop = document.getElementById("backTop");
+
+        window.addEventListener("scroll", function () {
+            backTop.classList.toggle("show", window.scrollY > 400);
+        }, { passive: true });
+
+        // Close mobile navigation after clicking a section link
+        document.querySelectorAll("#navbarNav .nav-link").forEach(function (link) {
+            link.addEventListener("click", function () {
+                const nav = document.getElementById("navbarNav");
+
+                if (nav.classList.contains("show")) {
+                    bootstrap.Collapse.getOrCreateInstance(nav).hide();
+                }
+            });
+        });
+    </script>
 
 </body>
-
 </html>
